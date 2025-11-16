@@ -189,4 +189,10 @@ public class TaskController {
         task.setId(id);
         this.taskService.updateTask(task); // use service to update task
     }
+
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @DeleteMapping(path = "{id}")
+    public void deleteTask(@PathVariable("id") Long id){
+        this.taskService.deleteTask(id); // use service to delete task by id
+    }
 }

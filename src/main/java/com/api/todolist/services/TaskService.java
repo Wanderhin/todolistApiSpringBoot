@@ -92,4 +92,8 @@ public class TaskService {
     public void updateTask(Task task){
         this.taskRepository.save(task); // update task
     }
+
+    public void deleteTask(Long id){
+        this.taskRepository.deleteById(id); // delete task by id
+    }
 }
