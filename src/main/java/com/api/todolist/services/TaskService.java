@@ -2,19 +2,19 @@
  * ===============================================================
  *                       TaskService
  * ===============================================================
- *
+
  * This service class provides the business logic for managing
  * Task entities in the TodoList application.
  * It interacts with the TaskRepository to perform CRUD operations
  * on the database.
- *
+
  * ---------------------------------------------------------------
  * Class: TaskService
  * Repository: TaskRepository
  * ---------------------------------------------------------------
- *
+
  * Methods:
- *
+
  * 1. addTask(Task task)
  *    - Saves a new task or updates an existing task in the database.
  *    - Delegates to TaskRepository.save(task).
@@ -33,24 +33,24 @@
 
  *    Example:
  *       List<Task> tasks = taskService.getAllTasks();
- *
+
  * 3. getTaskById(Integer id)
  *    - Retrieves a task by its ID.
  *    - Returns an Optional<Task> which may be empty if no task exists.
- *
+
  *    Example:
  *       Optional<Task> task = taskService.getTaskById(1);
- *
+
  * 4. updateTask(Task task)
  *    - Updates an existing task.
  *    - Typically calls repository.save(task) after verifying task exists.
- *
+
  * 5. deleteTask(Integer id)
  *    - Deletes a task by ID.
  *    - Throws an exception if the task does not exist.
- *
+
  * ---------------------------------------------------------------
- *
+
  * ---------------------------------------------------------------
  * Notes:
  * - This service layer is designed to contain all business logic.
@@ -71,7 +71,7 @@ import java.util.List;
 
 @Service
 public class TaskService {
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
