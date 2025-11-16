@@ -14,9 +14,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="task")
-@Getter
-@Setter
 @AllArgsConstructor
 public class Task {
     @Id
@@ -30,8 +27,40 @@ public class Task {
 
     private String description;
 
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     @Basic(optional = false)
-    private boolean isCompleted;
+    private boolean completed;
 
     public Task() {
 
