@@ -176,4 +176,17 @@ public class TaskController {
     public List<Task> getAllTasks(){
         return this.taskService.getAllTasks();
     }
+
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    @GetMapping(path = "{id}", produces = APPLICATION_JSON_VALUE)
+    public Task getTaskById(@PathVariable("id") Long id){
+        return this.taskService.getTaskById(id); // user service to get task by id
+    }
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @PutMapping(path = "{id}", consumes = APPLICATION_JSON_VALUE)
+    public void updateTask(@PathVariable("id") Long id, @RequestBody Task task){
+        task.setId(id);
+        this.taskService.updateTask(task); // use service to update task
+    }
 }
