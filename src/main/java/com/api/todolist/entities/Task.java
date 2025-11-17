@@ -8,6 +8,7 @@
  * */
 package com.api.todolist.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,16 +16,19 @@ import lombok.Setter;
 
 @Entity
 @AllArgsConstructor
+@Schema(description = "represent a task to do")
 public class Task {
     @Id
     @Column(unique = true)
     @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "value unique of objet in database")
     private Long id;
 
     @Basic(optional = false)
+    @Schema(description = "title of the task ")
     private String title;
-
+    @Schema(description = "represent the description of the task")
     private String description;
 
     public boolean isCompleted() {
@@ -60,6 +64,7 @@ public class Task {
     }
 
     @Basic(optional = false)
+    @Schema(description = "the task is completed or no")
     private boolean completed;
 
     public Task() {

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.api.todolist.entities","l":"Task"},{"p":"com.api.todolist.controllers","l":"TaskController"},{"p":"com.api.todolist.repositories","l":"TaskRepository"},{"p":"com.api.todolist.services","l":"TaskService"},{"p":"com.api.todolist","l":"TodoListApplication"}];updateSearchResults();

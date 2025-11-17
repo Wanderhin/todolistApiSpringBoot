@@ -149,6 +149,10 @@ package com.api.todolist.controllers;
 
 import com.api.todolist.entities.Task;
 import com.api.todolist.services.TaskService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -167,24 +171,41 @@ public class TaskController {
 
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public void addTask(@RequestBody Task task){
+    @Operation(summary = "Task Controller", description = "Controller for managing tasks in the Todo List API")
+    @ApiResponses({
+    @ApiResponse(responseCode = "201", description = "Successful operation"),
+    @ApiResponse(responseCode = "400", description = "Invalid input")})
+    public void addTask(@RequestBody @Parameter(description = "data of the new task") Task task){
+
         this.taskService.addTask(task); // utilisation du service pour l'enregistrement en base de donnee
     }
 
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     @GetMapping(produces = APPLICATION_JSON_VALUE)
+    @Operation(summary = "Get All Tasks", description = "Retrieve all tasks from the Todo List")
+    @ApiResponses({
+    @ApiResponse(responseCode = "200", description = "Successful operation"),
+    @ApiResponse(responseCode = "404", description = "Tasks not found")})
     public List<Task> getAllTasks(){
         return this.taskService.getAllTasks();
     }
 
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     @GetMapping(path = "{id}", produces = APPLICATION_JSON_VALUE)
+    @Operation(summary = "Get Task by ID", description = "Retrieve a specific task by its ID")
+    @ApiResponses({
+    @ApiResponse(responseCode = "200", description = "Successful operation"),
+    @ApiResponse(responseCode = "404", description = "Task not found")})
     public Task getTaskById(@PathVariable("id") Long id){
         return this.taskService.getTaskById(id); // user service to get task by id
     }
 
     @ResponseStatus(value = HttpStatus.OK)
     @PutMapping(path = "{id}", consumes = APPLICATION_JSON_VALUE)
+    @Operation(summary = "Update Task", description = "Update an existing task by its ID")
+    @ApiResponses({
+    @ApiResponse(responseCode = "200", description = "Successful operation"),
+    @ApiResponse(responseCode = "404", description = "Task not found")})
     public void updateTask(@PathVariable("id") Long id, @RequestBody Task task){
         task.setId(id);
         this.taskService.updateTask(task); // use service to update task
@@ -192,6 +213,10 @@ public class TaskController {
 
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @DeleteMapping(path = "{id}")
+    @Operation(summary = "Delete Task", description = "Delete a task by its ID")
+    @ApiResponses({
+    @ApiResponse(responseCode = "204", description = "Successful operation"),
+    @ApiResponse(responseCode = "404", description = "Task not found")})
     public void deleteTask(@PathVariable("id") Long id){
         this.taskService.deleteTask(id); // use service to delete task by id
     }

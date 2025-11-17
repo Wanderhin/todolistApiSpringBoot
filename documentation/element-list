@@ -1,0 +1,5 @@
+com.api.todolist
+com.api.todolist.controllers
+com.api.todolist.entities
+com.api.todolist.repositories
+com.api.todolist.services
